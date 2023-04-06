@@ -12,13 +12,8 @@ export class App extends Component {
   };
 
   handleFeedback = e => {
-    if (e === 'Good') {
-      this.setState({ good: this.state.good + 1 });
-    } else if (e === 'Neutral') {
-      this.setState({ neutral: this.state.neutral + 1 });
-    } else if (e === 'Bad') {
-      this.setState({ bad: this.state.bad + 1 });
-    }
+    const type = e.toLoverCase();
+    this.setState({ [type]: this.state[type] + 1 });
   };
 
   totalFeedback = () => {
@@ -63,7 +58,7 @@ export class App extends Component {
               positivePercentage={this.positivePercentage()}
             />
           ) : (
-            <Notification message="There is no feedback"></Notification>
+            <Notification message="There is no feedback"/>
           )}
         </Section>
       </div>
